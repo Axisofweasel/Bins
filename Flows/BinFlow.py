@@ -26,9 +26,19 @@ def calendar_check():
     today = datetime.datetime.today()
     tomorrow = today + datetime.timedelta(days = 1)
     tomorrowdate = tomorrow.strftime('%Y-%m-%d')
+    try:
+        logger.debug('Getting Bin Calendar')
+        html = requests.get(url=bin_url)
+        html.raise_for_status()
+        logger.info('GET Succesful')
+    except requests.exceptions.HTTPError as e:
+        logger.error(f'HTTP Error occurred: {e}')
+    except requests.exceptions.ConnectionError as e:
+        logger.error(f'Connection Error occurred: {e}')
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Request Exception occurred: {e}")
     
-    logger.debug('Getting Bin Calendar')
-    html = requests.get(url=bin_url)
+    
     sitesoup = BeautifulSoup(html._content, 'html.parser')
     bin_html = sitesoup.find('fieldset')
     child_html = bin_html.findChildren('p')
