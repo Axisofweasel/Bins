@@ -68,7 +68,7 @@ def message_post(formatted_message, send):
     
     logger = get_run_logger()
     logger.info("INFO level logging")
-    logger.info("You can see this becausse we're logging DEBUG errors")
+    logger.debug("You can see this becausse we're logging DEBUG errors")
 
     api_token = os.getenv('PUSHOVERAPITOKEN')
     user_token = os.getenv('USERTOKEN')
