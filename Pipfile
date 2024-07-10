@@ -6,7 +6,8 @@ name = "pypi"
 [packages]
 beautifulsoup4 = "*"
 python-dateutil = "*"
-requests = "*"
+prefect = "2.31.0"
+prefect-docker = "*"
 
 [dev-packages]
 
